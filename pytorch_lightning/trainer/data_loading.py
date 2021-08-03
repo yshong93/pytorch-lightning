@@ -263,8 +263,8 @@ class TrainerDataLoadingMixin(ABC):
         return sampler
 
     def reset_train_dataloader(self, model: "pl.LightningModule") -> None:
-        """Resets the train dataloader and initialises required variables
-        (number of batches, when to validate, etc.).
+        """Resets the train dataloader and initialises required variables (number of batches, when to validate,
+        etc.).
 
         Args:
             model: The current `LightningModule`
@@ -483,11 +483,10 @@ class TrainerDataLoadingMixin(ABC):
             self.num_predict_batches, self.predict_dataloaders = self._reset_eval_dataloader(model, "predict")
 
     def reset_train_val_dataloaders(self, model) -> None:
-        """
-        Resets train and val dataloaders if none are attached to the trainer.
+        """Resets train and val dataloaders if none are attached to the trainer.
 
-        The val dataloader must be initialized before training loop starts, as the training loop
-        inspects the val dataloader to determine whether to run the evaluation loop.
+        The val dataloader must be initialized before training loop starts, as the training loop inspects the val
+        dataloader to determine whether to run the evaluation loop.
         """
         if self.train_dataloader is None:
             self.reset_train_dataloader(model)
@@ -510,9 +509,8 @@ class TrainerDataLoadingMixin(ABC):
 
     @staticmethod
     def _add_sampler_metadata_collate(dataloader: DataLoader) -> None:
-        """
-        Wrap default collate function to retrive ``FastForwardSampler`` state dict when fault tolerant is enabled.
-        """
+        """Wrap default collate function to retrive ``FastForwardSampler`` state dict when fault tolerant is
+        enabled."""
         dataloader.collate_fn = partial(
             _sampler_metadata_collate, dataset=dataloader.dataset, default_collate=dataloader.collate_fn
         )

@@ -32,9 +32,7 @@ class TestModel(BoringModel):
 
 @RunIf(skip_windows=True)
 def test_global_zero_only_logging_ddp_cpu(tmpdir):
-    """
-    Makes sure logging only happens from root zero
-    """
+    """Makes sure logging only happens from root zero."""
     model = TestModel()
     model.training_epoch_end = None
     trainer = Trainer(
@@ -51,9 +49,7 @@ def test_global_zero_only_logging_ddp_cpu(tmpdir):
 
 @RunIf(min_gpus=2)
 def test_global_zero_only_logging_ddp_spawn(tmpdir):
-    """
-    Makes sure logging only happens from root zero
-    """
+    """Makes sure logging only happens from root zero."""
     model = TestModel()
     model.training_epoch_end = None
     trainer = Trainer(
@@ -69,9 +65,9 @@ def test_global_zero_only_logging_ddp_spawn(tmpdir):
 
 
 def test_first_logger_call_in_subprocess(tmpdir):
-    """
-    Test that the Trainer does not call the logger too early. Only when the worker processes are initialized
-    do we have access to the rank and know which one is the main process.
+    """Test that the Trainer does not call the logger too early.
+
+    Only when the worker processes are initialized do we have access to the rank and know which one is the main process.
     """
 
     class LoggerCallsObserver(Callback):

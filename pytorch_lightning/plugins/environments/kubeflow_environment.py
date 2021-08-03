@@ -21,11 +21,9 @@ log = logging.getLogger(__name__)
 
 
 class KubeflowEnvironment(ClusterEnvironment):
-    """
-    Environment for distributed training using the
-    `PyTorchJob <https://www.kubeflow.org/docs/components/training/pytorch/>`_
-    operator from `Kubeflow <https://www.kubeflow.org>`_
-    """
+    """Environment for distributed training using the `PyTorchJob
+    <https://www.kubeflow.org/docs/components/training/pytorch/>`_ operator from `Kubeflow
+    <https://www.kubeflow.org>`_"""
 
     @staticmethod
     def is_using_kubeflow() -> bool:

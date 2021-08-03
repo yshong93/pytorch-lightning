@@ -28,10 +28,8 @@ def test_unsupported_precision_plugins():
 
 @pytest.mark.parametrize("delay_dispatch", [True, False])
 def test_plugin_setup_optimizers_in_pre_dispatch(tmpdir, delay_dispatch):
-    """
-    Test when using a custom training type plugin that delays setup optimizers,
-    we do not call setup optimizers till ``pre_dispatch``.
-    """
+    """Test when using a custom training type plugin that delays setup optimizers, we do not call setup optimizers
+    till ``pre_dispatch``."""
 
     class TestModel(BoringModel):
         def on_fit_start(self):
@@ -55,9 +53,7 @@ def test_plugin_setup_optimizers_in_pre_dispatch(tmpdir, delay_dispatch):
 
 
 def test_accelerator_on_reset_dataloader_hooks(tmpdir):
-    """
-    Ensure data-loader hooks are called using an Accelerator.
-    """
+    """Ensure data-loader hooks are called using an Accelerator."""
 
     class CustomAccelerator(CPUAccelerator):
         train_count: int = 0
@@ -110,9 +106,7 @@ def test_accelerator_on_reset_dataloader_hooks(tmpdir):
 
 
 def test_plugin_on_reset_dataloader_hooks(tmpdir):
-    """
-    Ensure data-loader hooks are called using a Plugin.
-    """
+    """Ensure data-loader hooks are called using a Plugin."""
 
     class CustomPlugin(SingleDevicePlugin):
         train_count: int = 0
@@ -164,9 +158,7 @@ def test_plugin_on_reset_dataloader_hooks(tmpdir):
 
 
 def test_restore_checkpoint_after_pre_dispatch_default():
-    """
-    Assert default for restore_checkpoint_after_pre_dispatch is False.
-    """
+    """Assert default for restore_checkpoint_after_pre_dispatch is False."""
     plugin = SingleDevicePlugin(torch.device("cpu"))
     accelerator = CPUAccelerator(training_type_plugin=plugin, precision_plugin=PrecisionPlugin())
     assert not accelerator.restore_checkpoint_after_pre_dispatch
@@ -175,10 +167,8 @@ def test_restore_checkpoint_after_pre_dispatch_default():
 
 @pytest.mark.parametrize("restore_after_pre_dispatch", [True, False])
 def test_restore_checkpoint_after_pre_dispatch(tmpdir, restore_after_pre_dispatch):
-    """
-    Test to ensure that if restore_checkpoint_after_pre_dispatch is True, then we only load the state after
-    pre-dispatch is called.
-    """
+    """Test to ensure that if restore_checkpoint_after_pre_dispatch is True, then we only load the state after pre-
+    dispatch is called."""
 
     class TestPlugin(SingleDevicePlugin):
         predispatched_called = False

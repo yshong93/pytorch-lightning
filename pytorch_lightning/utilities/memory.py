@@ -93,8 +93,7 @@ def garbage_collection_cuda():
 
 
 def get_model_size_mb(model: Module) -> float:
-    """
-    Calculates the size of a Module in megabytes by saving the model to a temporary file and reading its size.
+    """Calculates the size of a Module in megabytes by saving the model to a temporary file and reading its size.
 
     The computation includes everything in the :meth:`~torch.nn.Module.state_dict`,
     i.e., by default the parameteters and buffers.
