@@ -180,7 +180,7 @@ Furthermore, Lightning also supports nested lists and dicts (or a combination).
             loader_a = torch.utils.data.DataLoader(range(8), batch_size=4)
             loader_b = torch.utils.data.DataLoader(range(16), batch_size=4)
             loader_c = torch.utils.data.DataLoader(range(32), batch_size=4)
-            loader_c = torch.utils.data.DataLoader(range(64), batch_size=4)
+            loader_d = torch.utils.data.DataLoader(range(64), batch_size=4)
 
             # pass loaders as a nested dict. This will create batches like this:
             loaders = {"loaders_a_b": [loader_a, loader_b], "loaders_c_d": {"c": loader_c, "d": loader_d}}
